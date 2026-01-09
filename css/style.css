@@ -1,26 +1,20 @@
-/* RESET */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* ROOT */
 body {
-    font-family: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
-    background: #f5f7fb;
-    color: #1f2937;
-    line-height: 1.6;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f2f3f7;
+    color: #222;
 }
 
 /* HEADER */
 header {
-    background: linear-gradient(135deg, #0b0d17, #1c1f3a);
+    background: linear-gradient(135deg, #1e1e2f, #2e2e48);
     color: #fff;
-    padding: 18px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 18px 20px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -29,192 +23,170 @@ header {
 header h1 {
     font-size: 22px;
     font-weight: 700;
-    letter-spacing: 0.4px;
+}
+
+nav {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 nav a {
-    color: #dbe1ff;
+    color: #fff;
     text-decoration: none;
-    margin-left: 22px;
-    font-weight: 500;
-    position: relative;
+    font-weight: 600;
+    font-size: 14px;
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 2px;
-    background: #8da2ff;
-    transition: width 0.25s ease;
+nav a:hover {
+    opacity: 0.85;
 }
 
-nav a:hover::after {
-    width: 100%;
-}
-
-/* MAIN SECTION */
+/* SECTION */
 section {
-    padding: 60px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 36px;
+    padding: 20px;
 }
 
-/* CATEGORY HEADINGS */
+/* SECTION TITLES */
 section h2 {
     grid-column: 1 / -1;
-    font-size: 24px;
-    font-weight: 700;
     margin: 20px 0 10px;
-    position: relative;
-    padding-left: 14px;
+    font-size: 22px;
+    border-left: 4px solid #1e1e2f;
+    padding-left: 10px;
 }
 
-section h2::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 6px;
-    width: 5px;
-    height: 24px;
-    background: linear-gradient(180deg, #4f46e5, #7c83ff);
-    border-radius: 2px;
+/* PRODUCT GRID */
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
 }
 
 /* PRODUCT CARD */
-section div {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+section > div {
+    background: #fff;
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-section div:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 24px 55px rgba(0,0,0,0.15);
+section > div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.12);
 }
 
 /* PRODUCT IMAGE */
 section img {
     width: 100%;
     height: 190px;
-    object-fit: contain;
-    margin-bottom: 14px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
 }
 
-/* PRODUCT TITLE */
+/* PRODUCT TEXT */
 section h3 {
     font-size: 16px;
-    font-weight: 600;
     margin-bottom: 6px;
 }
 
-/* PRODUCT DESCRIPTION */
 section p {
     font-size: 14px;
-    color: #6b7280;
+    color: #555;
+    margin-bottom: 8px;
 }
 
-/* PRICE */
-section p:last-of-type {
-    margin-top: 6px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #111827;
+section strong {
+    font-size: 16px;
+    color: #000;
 }
 
 /* BUTTON */
 button {
-    margin-top: 14px;
-    width: 100%;
-    padding: 13px;
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
-    color: #ffffff;
-    border: none;
+    margin-top: auto;
+    padding: 12px;
     border-radius: 10px;
-    font-size: 14px;
+    border: none;
+    background: linear-gradient(135deg, #1e1e2f, #3a3a5e);
+    color: #fff;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(79,70,229,0.4);
+    opacity: 0.9;
 }
 
-/* CART ITEMS */
-#cart-items div {
+/* CART */
+#cart-items > div {
     display: flex;
     align-items: center;
-    gap: 18px;
-    padding: 18px;
-    border-radius: 16px;
-    background: #ffffff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    margin-bottom: 18px;
+    gap: 15px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    margin-bottom: 15px;
 }
 
 #cart-items img {
     width: 90px;
     height: 90px;
-    object-fit: contain;
-}
-
-/* TOTAL TEXT */
-#total,
-#checkout-total {
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: 24px;
-}
-
-/* FORMS */
-input {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 14px;
     border-radius: 10px;
-    border: 1px solid #d1d5db;
-    font-size: 14px;
-}
-
-/* CENTERED PAGES */
-section[style*="text-align:center"],
-.login,
-.signup {
-    display: block;
-    max-width: 440px;
-    margin: 80px auto;
-    padding: 34px;
-    background: #ffffff;
-    border-radius: 18px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    object-fit: cover;
 }
 
 /* FOOTER */
 footer {
-    background: #0b0d17;
-    color: #9ca3af;
+    background: #1e1e2f;
+    color: #fff;
     text-align: center;
-    padding: 28px;
-    margin-top: 80px;
+    padding: 25px;
+    margin-top: 40px;
     font-size: 14px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    header {
-        padding: 16px 24px;
+/* MOBILE PREMIUM */
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    nav {
+        justify-content: center;
     }
 
     section {
-        padding: 30px;
-        gap: 24px;
+        padding: 15px;
+    }
+
+    section h2 {
+        font-size: 20px;
+    }
+
+    section img {
+        height: 160px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    #cart-items > div {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #cart-items img {
+        width: 100%;
+        height: 160px;
     }
 }
