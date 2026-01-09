@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout - Havanah Music Co.</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Havanah Music Co.</h1>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
+
+<section>
+    <h2>Checkout</h2>
+
+    <div id="checkout-items"></div>
+    <h3 id="checkout-total"></h3>
+
+    <hr>
+
+    <h3>Select Payment Method</h3>
+    <label>
+        <input type="radio" name="payment" value="UPI" checked> UPI
+    </label><br>
+    <label>
+        <input type="radio" name="payment" value="Card"> Debit / Credit Card
+    </label><br>
+    <label>
+        <input type="radio" name="payment" value="COD"> Cash on Delivery
+    </label><br><br>
+
+    <button onclick="goToPayment()">Proceed to Payment</button>
+</section>
+
+<footer>
+    <p><strong>Havanah Music Co.</strong></p>
+    <p>Secure checkout • Trusted payments</p>
+    <p>© 2026 Havanah Music Co.</p>
+</footer>
+
+<script src="js/cart.js"></script>
+<script>
+let cart = getCart();
+let box = document.getElementById("checkout-items");
+let total = 0;
+
+if (cart.length === 0) {
+    box.innerHTML = "<p>Your cart is empty.</p>";
+} else {
+    cart.forEach(item => {
+        total += item.price * item.qty;
+        box.innerHTML += `
+            <div style="border:1px solid #ddd;padding:10px;margin:10px;">
+                <strong>${item.name}</strong><br>
+                Quantity: ${item.qty}<br>
+                Price: ₹${item.price * item.qty}
+            </div>
+        `;
+    });
+}
+
+document.getElementById("checkout-total").innerText =
+    "Total Amount: ₹" + total;
+
+function goToPayment() {
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    const selectedPayment =
+        document.querySelector('input[name="payment"]:checked').value;
+
+    localStorage.setItem("paymentMethod", selectedPayment);
+
+    window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>

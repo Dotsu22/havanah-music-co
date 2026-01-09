@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment - Havanah Music Co.</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Havanah Music Co.</h1>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section>
+    <h2>Payment</h2>
+
+    <p id="method"></p>
+    <h3 id="amount"></h3>
+
+    <button onclick="completePayment()">Confirm & Place Order</button>
+</section>
+
+<footer>
+    <p>© 2026 Havanah Music Co. All rights reserved.</p>
+</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let paymentMethod = localStorage.getItem("paymentMethod") || "Not selected";
+
+let total = 0;
+cart.forEach(item => {
+    total += item.price * item.qty;
+});
+
+document.getElementById("method").innerText =
+    "Payment Method: " + paymentMethod;
+
+document.getElementById("amount").innerText =
+    "Total Amount: ₹" + total;
+
+function completePayment() {
+    if (cart.length === 0) {
+        alert("No items in cart!");
+        return;
+    }
+
+    localStorage.removeItem("cart");
+    localStorage.removeItem("paymentMethod");
+
+    window.location.href = "order-success.html";
+}
+</script>
+
+</body>
+</html>

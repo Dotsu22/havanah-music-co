@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up - Havanah Music Co.</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Havanah Music Co.</h1>
+</header>
+
+<section>
+    <h2>Create Account</h2>
+
+    <input type="email" id="email" placeholder="Email"><br><br>
+    <input type="password" id="password" placeholder="Password"><br><br>
+
+    <button onclick="signup()">Sign Up</button>
+
+    <p id="msg"></p>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+</section>
+
+<script>
+function signup() {
+    fetch("http://localhost:3000/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("msg").innerText = data.message;
+        if (data.message === "Signup successful") {
+            window.location.href = "login.html";
+        }
+    })
+    .catch(() => {
+        document.getElementById("msg").innerText = "Server error";
+    });
+}
+</script>
+
+</body>
+</html>
